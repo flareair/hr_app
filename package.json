@@ -1,7 +1,7 @@
 {
-  "name": "board_of_shame",
-  "version": "0.7.0",
-  "description": "Board of shame",
+  "name": "hr_app",
+  "version": "0.0.0",
+  "description": "HR app",
   "main": "app.js",
   "scripts": {
     "start": "webpack && ./node_modules/.bin/forever ./bin/www",
