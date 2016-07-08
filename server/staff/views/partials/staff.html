@@ -17,18 +17,18 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="">Sort by</label>
-                        <select class="form-control">
-                          <option>name</option>
-                          <option>department</option>
+                        <select class="form-control" ng-model="staff.orderBy">
+                          <option value="name">name</option>
+                          <option value="department">department</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="">Order</label>
-                        <select class="form-control">
-                          <option>asc</option>
-                          <option>desc</option>
+                        <select class="form-control" ng-model="staff.orderReverse">
+                          <option value="">asc</option>
+                          <option value="true">desc</option>
                         </select>
                     </div>
                 </div>
@@ -49,33 +49,42 @@
 
     <section class="table-view">
         <div class="table-view-head row">
-            <div class="col-md-3">Name</div>
+            <div class="col-md-4">Name</div>
             <div class="col-md-3">Phone</div>
             <div class="col-md-3">Email</div>
-            <div class="col-md-3">Department</div>
+            <div class="col-md-2">Department</div>
         </div>
         <div
             class="table-view-element row"
-            ng-repeat="person in staff.filtered = (staff.staffList | filter: staff.filter) | sliceFilter:staff.currentPage:staff.limit track by person.id"
+            ng-repeat="person in staff.filtered = (staff.staffList | filter: staff.filter) | orderBy:staff.orderBy:staff.orderReverse | sliceFilter:staff.currentPage:staff.limit track by person.id"
         >
-            <div class="col-md-3">{{person.name}}</div>
+            <div class="col-md-4">{{person.name}}</div>
             <div class="col-md-3">{{person.phone}}</div>
             <div class="col-md-3">{{person.email}}</div>
-            <div class="col-md-3">{{person.department}}</div>
+            <div class="col-md-2">{{person.department}}</div>
         </div>
     </section>
 
 
+    <div class="staff-footer">
+        <p class="lead text-center staff-loading" ng-show="staff.loading">
+            Load staff...
+        </p>
 
-    <div class="staff-footer text-center">
         <p ng-show="staff.filtered.length > 0"><b>Total count:</b> {{staff.filtered.length}}</p>
-        <p ng-hide="staff.filtered.length > 0"><b>Sorry, we can't find anyone</b></p>
+        <p ng-show="staff.emptyResults()"><b>Sorry, we can't find anyone</b></p>
+
+
+        <uib-pagination
+            ng-show="staff.filtered.length > 0"
+            total-items="staff.filtered.length"
+            ng-model="staff.currentPage"
+            max-size="5"
+            items-per-page="staff.limit"
+            boundary-link-numbers="true"
+        >
+        </uib-pagination>
     </div>
 
-    <p class="lead text-center staff-loading" ng-show="staff.loading">
-        Load staff...
-    </p>
-
-    <uib-pagination total-items="staff.filtered.length" ng-model="staff.currentPage" max-size="5" items-per-page="staff.limit"></uib-pagination>
 
 </div>

@@ -11,12 +11,17 @@ export default class BoardCtrl {
 
 
         // pagination
-
         this.currentPage = 1;
 
         this.staffList = [];
+        this.filtered = [];
         this.loading = false;
         this.limit = 20;
+
+        this.orderBy = 'name';
+
+        this.orderReverse = '';
+
         this.activate();
 
     }
@@ -36,6 +41,10 @@ export default class BoardCtrl {
             .finally(() => {
                 this.loading = false;
             });
+    }
+
+    emptyResults() {
+        return !this.loading && this.filtered.length <= 0;
     }
 
 }
