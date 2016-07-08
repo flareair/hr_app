@@ -1,0 +1,7 @@
+{
+    "strict": true,
+    "globalstrict": true,
+    "esnext": true,
+    "node": true,
+    "mocha": true
+}

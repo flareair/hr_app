@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-controller="RootCtrl as root">
+<head>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- meta for socials -->
+
+    <title ng-bind="root.metaData.getPageTitle()"></title>
+    <link rel="apple-touch-icon-precomposed" href="/favicon-152.png">
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+    <!-- navbar -->
+
+    <main-menu></main-menu>
+    <!-- angular view -->
+    <main ng-view ng-hide="root.loading.isViewLoading"></main>
+    <!-- scripts -->
+    <view-loading></view-loading>
+
+    <script src='/build.js'></script>
+
+</body>
+</html>
