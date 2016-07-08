@@ -13,7 +13,7 @@ let staff = [];
 
 while (staffCount > 0) {
     let person = {
-        id: faker.random.number(),
+        id: faker.random.uuid(),
         name: faker.fake('{{name.firstName}} {{name.lastName}} '),
         phone: faker.phone.phoneNumber(),
         email: faker.internet.email(),

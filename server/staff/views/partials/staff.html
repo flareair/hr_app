@@ -1,3 +1,81 @@
 <div class="container">
     <h1>Staff list</h1>
+
+    <section class="control-panel row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="">Filter</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Filter here"
+                    ng-model="staff.filter">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="">Sort by</label>
+                        <select class="form-control">
+                          <option>name</option>
+                          <option>department</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="">Order</label>
+                        <select class="form-control">
+                          <option>asc</option>
+                          <option>desc</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="">Toggle view</label>
+                <select class="form-control">
+                  <option>table</option>
+                  <option>cards</option>
+                  <option>deparments</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="table-view">
+        <div class="table-view-head row">
+            <div class="col-md-3">Name</div>
+            <div class="col-md-3">Phone</div>
+            <div class="col-md-3">Email</div>
+            <div class="col-md-3">Department</div>
+        </div>
+        <div
+            class="table-view-element row"
+            ng-repeat="person in staff.filtered = (staff.staffList | filter: staff.filter) | sliceFilter:staff.currentPage:staff.limit track by person.id"
+        >
+            <div class="col-md-3">{{person.name}}</div>
+            <div class="col-md-3">{{person.phone}}</div>
+            <div class="col-md-3">{{person.email}}</div>
+            <div class="col-md-3">{{person.department}}</div>
+        </div>
+    </section>
+
+
+
+    <div class="staff-footer text-center">
+        <p ng-show="staff.filtered.length > 0"><b>Total count:</b> {{staff.filtered.length}}</p>
+        <p ng-hide="staff.filtered.length > 0"><b>Sorry, we can't find anyone</b></p>
+    </div>
+
+    <p class="lead text-center staff-loading" ng-show="staff.loading">
+        Load staff...
+    </p>
+
+    <uib-pagination total-items="staff.filtered.length" ng-model="staff.currentPage" max-size="5" items-per-page="staff.limit"></uib-pagination>
+
 </div>

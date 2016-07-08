@@ -9,9 +9,14 @@ export default class BoardCtrl {
         this.$location = $location;
         this.staffService = staffService;
 
-        this.staff = [];
-        this.loading = false;
 
+        // pagination
+
+        this.currentPage = 1;
+
+        this.staffList = [];
+        this.loading = false;
+        this.limit = 20;
         this.activate();
 
     }
@@ -21,8 +26,8 @@ export default class BoardCtrl {
         this.loading = true;
         return this.staffService.getAllScammers()
             .then((res) => {
-                this.staff = res.data;
-                return this.staff;
+                this.staffList = res.data;
+                return this.staffList;
             })
             .catch((err) => {
                 console.error(err.statusText);
