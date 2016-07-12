@@ -3,11 +3,12 @@
         <div class="card-item text-center">
             <h4>{{person.name}}</h3>
             <img class="img-responsive" ng-src="{{person.avatar}}" alt="{{person.name}}">
-            <p class="card-info">
-                <b>{{person.department}}</b><br>
-                {{person.phone}} <br>
-                <a href="mailto:{{person.email}}">{{person.email}}</a>
-            </p>
+
+            <ul class="list-unstyled">
+                <li><b>{{person.department}}</b></li>
+                <li>{{person.phone}}</li>
+                <li><a href="mailto:{{person.email}}">{{person.email}}</a></li>
+            </ul>
         </div>
     </div>
 
