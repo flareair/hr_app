@@ -2,7 +2,7 @@
     <h1>Staff list</h1>
 
     <section class="control-panel row">
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-12">
             <div class="form-group">
                 <label for="">Filter</label>
                 <input
@@ -12,9 +12,9 @@
                     ng-model="staff.filter">
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-6">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 col-sm-6 col-xs-6">
                     <div class="form-group">
                         <label for="">Sort by</label>
                         <select class="form-control" ng-model="staff.orderBy">
@@ -24,7 +24,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 col-sm-6 col-xs-6">
                     <div class="form-group">
                         <label for="">Order</label>
                         <select class="form-control" ng-model="staff.orderReverse">
@@ -35,7 +35,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-6">
             <div class="form-group">
                 <label for="">Toggle view</label>
                 <select ng-model="staff.currentView" class="form-control">
@@ -78,16 +78,5 @@
         order="staff.orderBy"
         orderdir="staff.orderReverse"
     ></department-view>
-
-<!--     <div class="staff-footer">
-        <p class="lead text-center staff-loading" ng-show="staff.loading">
-            Load staff...
-        </p>
-
-        <p ng-show="staff.filtered.length > 0"><b>Total count:</b> {{staff.filtered.length}}</p>
-        <p ng-show="staff.emptyResults()"><b>Sorry, we can't find anyone</b></p>
-    </div> -->
-
-
 
 </div>

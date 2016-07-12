@@ -9,10 +9,10 @@
             class="table-view-element row"
             ng-repeat="person in filtered = (data | filter: filterstr) | orderBy:order:orederdir | sliceFilter:currentPage:limit track by person.id"
         >
-            <div class="col-md-4"><a href="#">{{person.name}}</a></div>
-            <div class="col-md-3">{{person.phone}}</div>
-            <div class="col-md-3">{{person.email}}</div>
-            <div class="col-md-2">{{person.department}}</div>
+            <div class="col-md-4 col-sm-12"><a href="#">{{person.name}}</a></div>
+            <div class="col-md-3 col-sm-4">{{person.phone}}</div>
+            <div class="col-md-3 col-sm-4">{{person.email}}</div>
+            <div class="col-md-2 col-sm-4">{{person.department}}</div>
         </div>
 
 
@@ -21,7 +21,7 @@
                 ng-show="filtered.length > limit"
                 total-items="filtered.length"
                 ng-model="currentPage"
-                max-size="5"
+                max-size="3"
                 items-per-page="limit"
                 boundary-link-numbers="true"
             >
