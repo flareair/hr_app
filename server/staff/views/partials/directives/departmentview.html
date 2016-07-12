@@ -9,4 +9,12 @@
         ></department-staff-view>
 
     </div>
+    <div class="staff-footer">
+        <p class="lead text-center staff-loading" ng-show="loading">
+            Load staff...
+        </p>
+
+        <p ng-show="filtered.length > 0"><b>Total count:</b> {{filtered.length}}</p>
+        <p ng-show="emptyResults()"><b>Sorry, we can't find anyone</b></p>
+    </div>
 </section>

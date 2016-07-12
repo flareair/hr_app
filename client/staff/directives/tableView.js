@@ -3,7 +3,7 @@
 export default function departmentView() {
     return {
         restrict:'E',
-        templateUrl:'staff/partials/directives/departmentview.html',
+        templateUrl:'staff/partials/directives/tableview.html',
         scope: {
             data: '=',
             loading: '=',
@@ -15,6 +15,9 @@ export default function departmentView() {
             scope.emptyResults = function emptyResults() {
                 return !scope.loading && scope.filtered.length <= 0;
             };
+
+            scope.currentPage = 1;
+            scope.limit = 20;
         }
     };
 }
