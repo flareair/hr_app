@@ -59,28 +59,14 @@
 
     <!-- card view -->
 
-    <section class="card-view row" ng-if="staff.ifCurrentViewIs('cards')">
-        <div class="col-md-3 col-sm-4 col-xs-6 wrapper" ng-repeat="person in staff.filtered = (staff.staffList | filter: staff.filter) | orderBy:staff.orderBy:staff.orderReverse | sliceFilter:staff.currentPage:staff.limit track by person.id">
-            <div class="card-item text-center">
-                <h4>{{person.name}}</h3>
-                <img class="img-responsive" ng-src="{{person.avatar}}" alt="{{person.name}}">
-                <p class="card-info"><b>{{person.department}}</b><br>{{person.phone}}</p>
-            </div>
-        </div>
-
-        <div class="pagination text-center col-md-12">
-            <uib-pagination
-                ng-show="staff.filtered.length > staff.limit"
-                total-items="staff.filtered.length"
-                ng-model="staff.currentPage"
-                max-size="5"
-                items-per-page="staff.limit"
-                boundary-link-numbers="true"
-            >
-            </uib-pagination>
-        </div>
-
-    </section>
+    <card-view
+        ng-if="staff.ifCurrentViewIs('cards')"
+        data="staff.staffList"
+        loading="staff.loading"
+        filterstr="staff.filter"
+        order="staff.orderBy"
+        orderdir="staff.orderReverse"
+    ></card-view>
 
     <!-- departments view -->
 

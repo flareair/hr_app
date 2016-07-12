@@ -1,0 +1,31 @@
+<section class="card-view row">
+    <div class="col-md-3 col-sm-4 col-xs-6 wrapper" ng-repeat="person in filtered = (data | filter: filterstr) | orderBy:order:orederdir | sliceFilter:currentPage:limit track by person.id">
+        <div class="card-item text-center">
+            <h4>{{person.name}}</h3>
+            <img class="img-responsive" ng-src="{{person.avatar}}" alt="{{person.name}}">
+            <p class="card-info"><b>{{person.department}}</b><br>{{person.phone}}</p>
+        </div>
+    </div>
+
+    <div class="text-center col-md-12">
+        <uib-pagination
+            ng-show="filtered.length > limit"
+            total-items="filtered.length"
+            ng-model="currentPage"
+            max-size="5"
+            items-per-page="limit"
+            boundary-link-numbers="true"
+        >
+        </uib-pagination>
+    </div>
+
+    <div class="staff-footer col-md-12">
+        <p class="lead text-center staff-loading" ng-show="loading">
+            Load staff...
+        </p>
+
+        <p ng-show="filtered.length > 0"><b>Total count:</b> {{filtered.length}}</p>
+        <p ng-show="emptyResults()"><b>Sorry, we can't find anyone</b></p>
+    </div>
+
+</section>
