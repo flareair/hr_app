@@ -1,5 +1,8 @@
 <section class="departments-view">
-    <div class="department-staff" ng-repeat="(department, people) in filtered = (data | filterBy: ['name', 'email', 'phone', 'department']:filterstr) | groupBy:'department'">
+    <div
+        class="department-staff"
+        ng-repeat="(department, people) in filtered = (data | filterBy: ['name', 'email', 'phone', 'department']:filterstr) | groupBy:'department'"
+    >
 
         <department-staff-view
             caption="department"
