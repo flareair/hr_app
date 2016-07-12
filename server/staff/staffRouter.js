@@ -12,4 +12,6 @@ const staffController = require('./staffController');
 router.get('/partials/:name', staffController.renderPartial);
 
 
+router.get('/partials/directives/:name', staffController.renderDirective);
+
 module.exports = router;

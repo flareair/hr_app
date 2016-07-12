@@ -1,0 +1,24 @@
+<h3 class="department-staff-caption"><a href="#" ng-click="toggleAccordeon()">{{caption}} <small><span class="glyphicon" ng-class="showStaff ? 'glyphicon-triangle-top' : 'glyphicon-triangle-bottom'" aria-hidden="true"></span></small></a></h3>
+
+<div class="department-staff-accordeon row" ng-show="showStaff">
+    <div class="col-md-4" ng-repeat="person in data | orderBy:order:orederdir | sliceFilter:currentPage:limit track by person.id">
+        <div class="staff-card well">
+            <h4><a href="#">{{person.name}}</a></h3>
+            <b>{{person.phone}}</b>
+        </div>
+
+    </div>
+
+    <div class="col-md-12">
+        <uib-pagination
+            ng-show="data.length > limit"
+            total-items="data.length"
+            ng-model="currentPage"
+            max-size="5"
+            items-per-page="limit"
+            boundary-link-numbers="true"
+        >
+        </uib-pagination>
+    </div>
+
+</div>

@@ -1,0 +1,12 @@
+<section class="departments-view">
+    <div class="department-staff" ng-repeat="(department, people) in filtered = (data | filter:filterstr) | groupBy:'department'">
+
+        <department-staff-view
+            caption="department"
+            data="people"
+            order="order"
+            orderdir="orderdir"
+        ></department-staff-view>
+
+    </div>
+</section>

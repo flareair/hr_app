@@ -107,26 +107,7 @@
 
     <!-- departments view -->
 
-    <section class="departments-view row" ng-if="staff.ifCurrentViewIs('departments')">
-        <div class="col-md-4" ng-repeat="(department, people) in staff.filtered = (staff.staffList | filter:staff.filter) | groupBy:'department'">
-            <h3>{{department}}</h3>
-            <div class="department-staff">
-                <div class="staff-card well" ng-repeat="person in people | orderBy:staff.orderBy:staff.orderReverse | sliceFilter:staff.currentPage:staff.limit track by person.id">
-                    <h4>{{person.name}}</h3>
-                    <b>{{person.phone}}</b>
-                </div>
-            </div>
-            <uib-pagination
-                ng-show="people.length > staff.limit"
-                total-items="people.length"
-                ng-model="staff.currentPage"
-                max-size="2"
-                items-per-page="staff.limit"
-                boundary-link-numbers="true"
-            >
-            </uib-pagination>
-        </div>
-    </section>
+    <department-view  ng-if="staff.ifCurrentViewIs('departments')" data="staff.staffList" filterstr="staff.filter" order="staff.orderBy" orderdir="staff.orderReverse"></department-view>
 
 
     <div class="staff-footer">
