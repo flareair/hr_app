@@ -9,7 +9,7 @@ export default function departmentView() {
             loading: '=',
             filterstr: '=',
             order: '=',
-            orederdir: '=',
+            orderdir: '=',
         },
         link:function(scope, elem, attrs){
             scope.emptyResults = function emptyResults() {

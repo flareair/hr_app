@@ -17,17 +17,17 @@
                 <div class="col-md-6 col-sm-6 col-xs-6">
                     <div class="form-group">
                         <label for="">Sort by</label>
-                        <select class="form-control" ng-model="staff.orderBy">
+                        <select class="form-control" ng-model="staff.filterProps.orderBy" ng-change="staff.saveProps()">
                           <option value="name">name</option>
                           <option value="email">email</option>
-                          <option value="department">department</option>
+                          <option value="department" ng-disabled="staff.ifCurrentViewIs('departments')">department</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-6">
                     <div class="form-group">
                         <label for="">Order</label>
-                        <select class="form-control" ng-model="staff.orderReverse">
+                        <select class="form-control" ng-model="staff.filterProps.orderReverse" ng-change="staff.saveProps()">
                           <option value="">asc</option>
                           <option value="true">desc</option>
                         </select>
@@ -38,7 +38,7 @@
         <div class="col-md-4 col-sm-6">
             <div class="form-group">
                 <label for="">Toggle view</label>
-                <select ng-model="staff.currentView" class="form-control">
+                <select ng-model="staff.filterProps.currentView" class="form-control" ng-change="staff.saveProps()">
                   <option value="table">table</option>
                   <option value="cards">cards</option>
                   <option value="departments">departments</option>
@@ -47,14 +47,15 @@
         </div>
     </section>
 
+
     <!-- table view -->
     <table-view
         ng-if="staff.ifCurrentViewIs('table')"
         data="staff.staffList"
         loading="staff.loading"
         filterstr="staff.filter"
-        order="staff.orderBy"
-        orderdir="staff.orderReverse"
+        order="staff.filterProps.orderBy"
+        orderdir="staff.filterProps.orderReverse"
     ></table-view>
 
     <!-- card view -->
@@ -64,8 +65,8 @@
         data="staff.staffList"
         loading="staff.loading"
         filterstr="staff.filter"
-        order="staff.orderBy"
-        orderdir="staff.orderReverse"
+        order="staff.filterProps.orderBy"
+        orderdir="staff.filterProps.orderReverse"
     ></card-view>
 
     <!-- departments view -->
@@ -75,8 +76,8 @@
         data="staff.staffList"
         loading="staff.loading"
         filterstr="staff.filter"
-        order="staff.orderBy"
-        orderdir="staff.orderReverse"
+        order="staff.filterProps.orderBy"
+        orderdir="staff.filterProps.orderReverse"
     ></department-view>
 
 </div>

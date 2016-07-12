@@ -1,28 +1,24 @@
 'use strict';
 
-export default class BoardCtrl {
-    constructor($location, metaDataService, menuService, staffService) {
+export default class StaffCtrl {
+    constructor(
+        $cookies,
+        $location,
+        metaDataService,
+        menuService,
+        staffService
+    ) {
         this.title = 'Staff list';
         metaDataService.setPageTitle(this.title);
         menuService.setActiveItem('/staff');
 
         this.$location = $location;
+        this.$cookies = $cookies;
         this.staffService = staffService;
 
-
-        this.currentView = 'table';
-
-        // pagination
-        this.currentPage = 1;
-
         this.staffList = [];
-        this.filtered = [];
-        this.loading = false;
-        this.limit = 10;
 
-        this.orderBy = 'name';
-
-        this.orderReverse = '';
+        this.initProps();
 
         this.activate();
 
@@ -50,11 +46,33 @@ export default class BoardCtrl {
     }
 
     ifCurrentViewIs(name) {
-        return name === this.currentView;
+        return name === this.filterProps.currentView;
     }
 
 
+    saveProps() {
+        if (this.ifCurrentViewIs('departments') && this.filterProps.orderBy === 'department') {
+            this.filterProps.orderBy = 'name';
+        }
+        return this.$cookies.putObject('filterProps', this.filterProps);
+    }
+
+    initProps() {
+        let storedProps = this.$cookies.getObject('filterProps');
+
+        if (storedProps) {
+            this.filterProps = storedProps;
+        } else {
+            this.filterProps = {
+                currentView: 'table',
+                orderBy: 'name',
+                orderReverse: ''
+            };
+        }
+
+        return this.filterProps;
+    }
 
 }
 
-BoardCtrl.$inject = ['$location', 'metaDataService', 'menuService', 'staffService'];
+StaffCtrl.$inject = ['$cookies', '$location', 'metaDataService', 'menuService', 'staffService'];

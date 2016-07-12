@@ -8,7 +8,7 @@ export default function departmentStaffView() {
             caption: '=',
             data: '=',
             order: '=',
-            orederdir: '=',
+            orderdir: '=',
         },
         link:function(scope, elem, attrs){
             scope.currentPage = 1;

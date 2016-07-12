@@ -1,7 +1,7 @@
 <h3 class="department-staff-caption"><a href="#" ng-click="toggleAccordeon()">{{caption}} <small><span class="glyphicon" ng-class="showStaff ? 'glyphicon-triangle-top' : 'glyphicon-triangle-bottom'" aria-hidden="true"></span></small></a></h3>
 
 <div class="department-staff-accordeon row" ng-show="showStaff">
-    <div class="col-md-4 col-sm-6" ng-repeat="person in data | orderBy:order:orederdir | sliceFilter:currentPage:limit track by person.id">
+    <div class="col-md-4 col-sm-6" ng-repeat="person in data | orderBy:order:orderdir | sliceFilter:currentPage:limit track by person.id">
         <div class="staff-card well">
             <h4><a href="#">{{person.name}}</a></h3>
             <b>{{person.phone}}</b>
