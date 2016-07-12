@@ -19,6 +19,7 @@
                         <label for="">Sort by</label>
                         <select class="form-control" ng-model="staff.orderBy">
                           <option value="name">name</option>
+                          <option value="email">email</option>
                           <option value="department">department</option>
                         </select>
                     </div>
@@ -37,17 +38,17 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label for="">Toggle view</label>
-                <select class="form-control">
-                  <option>table</option>
-                  <option>cards</option>
-                  <option>deparments</option>
+                <select ng-model="staff.currentView" class="form-control">
+                  <option value="table">table</option>
+                  <option value="cards">cards</option>
+                  <option value="departments">departments</option>
                 </select>
             </div>
         </div>
     </section>
 
-
-    <section class="table-view">
+    <!-- table view -->
+    <section class="table-view" ng-if="staff.ifCurrentViewIs('table')">
         <div class="table-view-head row">
             <div class="col-md-4">Name</div>
             <div class="col-md-3">Phone</div>
@@ -58,10 +59,72 @@
             class="table-view-element row"
             ng-repeat="person in staff.filtered = (staff.staffList | filter: staff.filter) | orderBy:staff.orderBy:staff.orderReverse | sliceFilter:staff.currentPage:staff.limit track by person.id"
         >
-            <div class="col-md-4">{{person.name}}</div>
+            <div class="col-md-4"><a href="#">{{person.name}}</a></div>
             <div class="col-md-3">{{person.phone}}</div>
             <div class="col-md-3">{{person.email}}</div>
             <div class="col-md-2">{{person.department}}</div>
+        </div>
+
+
+        <div class="pagination text-center col-md-12">
+            <uib-pagination
+                ng-show="staff.filtered.length > staff.limit"
+                total-items="staff.filtered.length"
+                ng-model="staff.currentPage"
+                max-size="5"
+                items-per-page="staff.limit"
+                boundary-link-numbers="true"
+            >
+            </uib-pagination>
+        </div>
+
+    </section>
+
+    <!-- card view -->
+
+    <section class="card-view row" ng-if="staff.ifCurrentViewIs('cards')">
+        <div class="col-md-3 col-sm-4 col-xs-6 wrapper" ng-repeat="person in staff.filtered = (staff.staffList | filter: staff.filter) | orderBy:staff.orderBy:staff.orderReverse | sliceFilter:staff.currentPage:staff.limit track by person.id">
+            <div class="card-item text-center">
+                <h4>{{person.name}}</h3>
+                <img class="img-responsive" ng-src="{{person.avatar}}" alt="{{person.name}}">
+                <p class="card-info"><b>{{person.department}}</b><br>{{person.phone}}</p>
+            </div>
+        </div>
+
+        <div class="pagination text-center col-md-12">
+            <uib-pagination
+                ng-show="staff.filtered.length > staff.limit"
+                total-items="staff.filtered.length"
+                ng-model="staff.currentPage"
+                max-size="5"
+                items-per-page="staff.limit"
+                boundary-link-numbers="true"
+            >
+            </uib-pagination>
+        </div>
+
+    </section>
+
+    <!-- departments view -->
+
+    <section class="departments-view row" ng-if="staff.ifCurrentViewIs('departments')">
+        <div class="col-md-4" ng-repeat="(department, people) in staff.filtered = (staff.staffList | filter:staff.filter) | groupBy:'department'">
+            <h3>{{department}}</h3>
+            <div class="department-staff">
+                <div class="staff-card well" ng-repeat="person in people | orderBy:staff.orderBy:staff.orderReverse | sliceFilter:staff.currentPage:staff.limit track by person.id">
+                    <h4>{{person.name}}</h3>
+                    <b>{{person.phone}}</b>
+                </div>
+            </div>
+            <uib-pagination
+                ng-show="people.length > staff.limit"
+                total-items="people.length"
+                ng-model="staff.currentPage"
+                max-size="2"
+                items-per-page="staff.limit"
+                boundary-link-numbers="true"
+            >
+            </uib-pagination>
         </div>
     </section>
 
@@ -73,17 +136,6 @@
 
         <p ng-show="staff.filtered.length > 0"><b>Total count:</b> {{staff.filtered.length}}</p>
         <p ng-show="staff.emptyResults()"><b>Sorry, we can't find anyone</b></p>
-
-
-        <uib-pagination
-            ng-show="staff.filtered.length > 0"
-            total-items="staff.filtered.length"
-            ng-model="staff.currentPage"
-            max-size="5"
-            items-per-page="staff.limit"
-            boundary-link-numbers="true"
-        >
-        </uib-pagination>
     </div>
 
 

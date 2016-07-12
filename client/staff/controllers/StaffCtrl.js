@@ -10,13 +10,15 @@ export default class BoardCtrl {
         this.staffService = staffService;
 
 
+        this.currentView = 'table';
+
         // pagination
         this.currentPage = 1;
 
         this.staffList = [];
         this.filtered = [];
         this.loading = false;
-        this.limit = 20;
+        this.limit = 10;
 
         this.orderBy = 'name';
 
@@ -46,6 +48,12 @@ export default class BoardCtrl {
     emptyResults() {
         return !this.loading && this.filtered.length <= 0;
     }
+
+    ifCurrentViewIs(name) {
+        return name === this.currentView;
+    }
+
+
 
 }
 

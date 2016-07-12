@@ -1,3 +1,6 @@
+@hover-background: @brand-info;
+
+
 .table-view {
     .table-view-head {
         font-size: 18px;
@@ -9,6 +12,36 @@
     .table-view-element {
         padding: 5px 0;
         border-bottom: 1px solid @gray-lighter;
+        &:hover {
+            background: @hover-background;
+            cursor: pointer;
+        }
+    }
+}
+
+.card-view {
+    .wrapper {
+       padding: 15px;
+    }
+    .card-item {
+        white-space: nowrap;
+        overflow: hidden;
+        background: @gray-lighter;
+        padding: 15px;
+
+        &:hover {
+            background: @hover-background;
+            cursor: pointer;
+        }
+
+        img {
+            margin: 0 auto;
+            margin-bottom: 15px;
+        }
+        .card-info {
+            margin: 0;
+        }
+
     }
 }
 

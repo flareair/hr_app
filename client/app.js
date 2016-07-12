@@ -10,6 +10,7 @@ import 'file!./favicon-152.png';
 // 123
 
 import angular from 'angular';
+import angularFilter from 'angular-filter/dist/angular-filter.js';
 import ngRouter from 'angular-route';
 import ngSanitize from 'angular-sanitize';
 
@@ -24,5 +25,6 @@ export default angular.module('app', [
     ngSanitize,
     shared,
     pages,
-    staff
+    staff,
+    'angular.filter'
 ]).name;
