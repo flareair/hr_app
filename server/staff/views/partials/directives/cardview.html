@@ -1,5 +1,5 @@
 <section class="card-view row">
-    <div class="col-md-3 col-sm-4 col-xs-6 wrapper" ng-repeat="person in filtered = (data | filter: filterstr) | orderBy:order:orderdir | sliceFilter:currentPage:limit track by person.id">
+    <div class="col-md-3 col-sm-4 col-xs-6 wrapper" ng-repeat="person in filtered = (data | filterBy: ['name', 'email', 'phone', 'department']:filterstr) | orderBy:order:orderdir | sliceFilter:currentPage:limit track by person.id">
         <div class="card-item text-center">
             <h4>{{person.name}}</h3>
             <img class="img-responsive" ng-src="{{person.avatar}}" alt="{{person.name}}">

@@ -7,7 +7,7 @@
         </div>
         <div
             class="table-view-element row"
-            ng-repeat="person in filtered = (data | filter: filterstr) | orderBy:order:orderdir | sliceFilter:currentPage:limit track by person.id"
+            ng-repeat="person in filtered = (data | filterBy: ['name', 'email', 'phone', 'department']:filterstr) | orderBy:order:orderdir | sliceFilter:currentPage:limit track by person.id"
         >
             <div class="col-md-4 col-sm-12"><a href="#">{{person.name}}</a></div>
             <div class="col-md-3 col-sm-4">{{person.phone}}</div>
