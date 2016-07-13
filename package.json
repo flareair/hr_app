@@ -1,6 +1,6 @@
 {
   "name": "hr_app",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "HR app",
   "main": "app.js",
   "scripts": {
@@ -14,7 +14,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/flareair/board_of_shame.git"
+    "url": "git+https://github.com/flareair/hr_app.git"
   },
   "dependencies": {
     "angular": "^1.5.2",

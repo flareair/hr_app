@@ -6,7 +6,7 @@ RUN apt-get update && \
 
 WORKDIR /app
 
-RUN git clone https://github.com/flareair/hr_app.git ./
+RUN git clone https://github.com/flareair/hr_app.git ./ && git checkout tags/0.1.0
 
 ENV PORT 80
 ENV NODE_ENV production

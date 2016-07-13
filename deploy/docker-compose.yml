@@ -5,6 +5,6 @@ web:
   volumes:
     - /app
   environment:
-    VIRTUAL_HOST: hr.2enter.app
+    VIRTUAL_HOST: hr.2enter.ru
   restart: always
   container_name: "hr_app"
