@@ -4,7 +4,12 @@
   "description": "HR app",
   "main": "app.js",
   "scripts": {
+<<<<<<< HEAD
+    "start": "webpack && ./node_modules/.bin/forever ./bin/www",
+    "postinstall": "node ./server/generateJson.js",
+=======
     "start": "webpack && node ./server/generateJson.js && ./node_modules/.bin/forever ./bin/www",
+>>>>>>> master
     "server": "./node_modules/.bin/forever ./bin/www",
     "server-detached": "./node_modules/.bin/forever start ./bin/www",
     "test": "./node_modules/karma/bin/karma start --single-run && ./node_modules/protractor/bin/protractor && ./node_modules/mocha/bin/mocha \"server/**/*.spec.js\"",
