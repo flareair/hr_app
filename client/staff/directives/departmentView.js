@@ -19,4 +19,4 @@ export default function departmentView(staffService) {
     };
 }
 
-departmentView.inject = ['staffService'];
+departmentView.$inject = ['staffService'];

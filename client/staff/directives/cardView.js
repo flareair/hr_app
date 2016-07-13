@@ -22,4 +22,4 @@ export default function cardView(staffService) {
     };
 }
 
-cardView.inject = ['staffService'];
+cardView.$inject = ['staffService'];
