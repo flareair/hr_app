@@ -1,7 +1,7 @@
 'use strict';
 import app from '../../app';
 
-describe('Board controller', () => {
+describe('Staff controller', () => {
     // let StaffCtrl;
     let stubStaffService;
     let stubMetaDataService;
@@ -11,14 +11,12 @@ describe('Board controller', () => {
     let StaffCtrl;
     let $scope;
     let res = {
-        data: [
-            {
-                name: 'test',
-                href: 'test.com',
-                description: 'Lorem ipsum',
-                complaintFrom: 'test2.com',
-            }
-        ]
+        data: [{
+            id: '123123',
+            name: 'John Dow',
+            email: 'mail@mail.ru',
+            phone: '77704412',
+        }]
     };
     let pageTitle = 'Staff list';
 
@@ -26,7 +24,7 @@ describe('Board controller', () => {
     beforeEach(() => {
         sandbox = sinon.sandbox.create();
         angular.mock.module(app);
-        angular.mock.inject(($controller, $q, _$rootScope_, _$location_) => {
+        angular.mock.inject(($controller, $q, _$rootScope_, _$location_, $cookies) => {
             deferred = $q.defer();
 
             stubStaffService = sandbox.stub({
@@ -54,6 +52,7 @@ describe('Board controller', () => {
                 metaDataService: stubMetaDataService,
                 menuService: stubMenuService,
                 staffService: stubStaffService,
+                $cookies: $cookies,
             });
         });
     });
@@ -86,76 +85,100 @@ describe('Board controller', () => {
 
     });
 
-    // describe('activate() method', () => {
-    //     it('should launch getSearchQuery method', () => {
-    //         sinon.spy(StaffCtrl, 'getSearchQuery');
+    describe('activate() method', () => {
 
-    //         StaffCtrl.activate();
+        it('should use staffService', (done) => {
 
-    //         expect(StaffCtrl.getSearchQuery.calledOnce).to.be.true;
-    //     });
+            StaffCtrl.activate();
+            expect(stubStaffService.getAllStaff.called).to.be.true;
+            done();
 
-    //     it('should use boardService', (done) => {
-
-    //         StaffCtrl.activate();
-    //         expect(stubStaffService.getAllScammers.called).to.be.true;
-    //         done();
-
-    //     });
+        });
 
 
-    //     it('should return scammers data if promise successful', (done) => {
+        it('should return staff data if promise successful', (done) => {
 
-    //         StaffCtrl.activate().then((data) => {
-    //             expect(data).to.deep.equal(res.data);
-    //             done();
-    //         });
+            StaffCtrl.activate().then((data) => {
+                expect(data).to.deep.equal(res.data);
+                done();
+            });
 
-    //         deferred.resolve(res);
-    //         $scope.$apply();
-    //     });
+            deferred.resolve(res);
+            $scope.$apply();
+        });
 
-    //     it('should return false data if promise rejected', (done) => {
+        it('should return false data if promise rejected', (done) => {
 
-    //         StaffCtrl.activate().then((data) => {
-    //             expect(data).to.be.false;
-    //             done();
-    //         });
+            StaffCtrl.activate().then((data) => {
+                expect(data).to.be.false;
+                done();
+            });
 
-    //         deferred.reject(res);
-    //         $scope.$apply();
-    //     });
+            deferred.reject(res);
+            $scope.$apply();
+        });
 
-    //     it('should call console.error if promise rejected', (done) => {
+        it('should call console.error if promise rejected', (done) => {
 
-    //         sandbox.spy(console, 'error');
+            sandbox.spy(console, 'error');
 
-    //         StaffCtrl.activate().then((data) => {
-    //             expect(console.error.called).to.be.true;
-    //             done();
-    //         });
+            StaffCtrl.activate().then((data) => {
+                expect(console.error.called).to.be.true;
+                done();
+            });
 
-    //         deferred.reject(res);
-    //         $scope.$apply();
-    //     });
+            deferred.reject(res);
+            $scope.$apply();
+        });
 
-    //     it('should set loading variable to true while promise is pending', () => {
+        it('should set loading variable to true while promise is pending', () => {
 
-    //         deferred.resolve(res);
-    //         StaffCtrl.activate();
-    //         return expect(StaffCtrl.loading).to.be.true;
-    //     });
+            deferred.resolve(res);
+            StaffCtrl.activate();
+            return expect(StaffCtrl.loading).to.be.true;
+        });
 
-    //     it('should set loading variable to false then promise is completed', (done) => {
-    //         StaffCtrl.activate().then((data) => {
-    //             expect(StaffCtrl.loading).to.be.false;
-    //             done();
-    //         });
+        it('should set loading variable to false then promise is completed', (done) => {
+            StaffCtrl.activate().then((data) => {
+                expect(StaffCtrl.loading).to.be.false;
+                done();
+            });
 
-    //         deferred.resolve(res);
-    //         $scope.$apply();
-    //     });
-    // });
+            deferred.resolve(res);
+            $scope.$apply();
+        });
+    });
+
+    describe('emptyResults() method', () => {
+        it('should return true if promise is already loaded and filtered results is empty', () => {
+            StaffCtrl.loading = false;
+            StaffCtrl.filtered = [];
+
+            expect(StaffCtrl.emptyResults()).to.be.true;
+
+            StaffCtrl.loading = false;
+            StaffCtrl.filtered = undefined;
+
+            expect(StaffCtrl.emptyResults()).to.be.true;
+        });
+
+        it('should return false if promise is loadeding or filtered results not empty', () => {
+            StaffCtrl.loading = true;
+            StaffCtrl.filtered = [];
+
+            expect(StaffCtrl.emptyResults()).to.be.false;
+
+            StaffCtrl.loading = false;
+            StaffCtrl.filtered = ['foo', 'bar', 'baz'];
+
+            expect(StaffCtrl.emptyResults()).to.be.false;
+
+            StaffCtrl.loading = true;
+            StaffCtrl.filtered = ['foo', 'bar', 'baz'];
+
+            expect(StaffCtrl.emptyResults()).to.be.false;
+        });
+    });
 
 
 });

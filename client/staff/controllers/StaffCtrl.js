@@ -17,6 +17,7 @@ export default class StaffCtrl {
         this.staffService = staffService;
 
         this.staffList = [];
+        this.filtered = [];
 
         this.initProps();
 
@@ -42,6 +43,10 @@ export default class StaffCtrl {
     }
 
     emptyResults() {
+        if (!this.filtered) {
+            return true;
+        }
+
         return !this.loading && this.filtered.length <= 0;
     }
 
