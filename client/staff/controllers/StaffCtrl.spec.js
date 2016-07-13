@@ -6,6 +6,7 @@ describe('Staff controller', () => {
     let stubStaffService;
     let stubMetaDataService;
     let stubMenuService;
+    let stubCookies;
     let sandbox;
     let deferred;
     let StaffCtrl;
@@ -18,13 +19,20 @@ describe('Staff controller', () => {
             phone: '77704412',
         }]
     };
+
+    let defaultProps = {
+        currentView: 'table',
+        orderBy: 'name',
+        orderReverse: ''
+    };
+
     let pageTitle = 'Staff list';
 
 
     beforeEach(() => {
         sandbox = sinon.sandbox.create();
         angular.mock.module(app);
-        angular.mock.inject(($controller, $q, _$rootScope_, _$location_, $cookies) => {
+        angular.mock.inject(($controller, $q, _$rootScope_, _$location_) => {
             deferred = $q.defer();
 
             stubStaffService = sandbox.stub({
@@ -45,6 +53,13 @@ describe('Staff controller', () => {
                 }
             });
 
+            stubCookies = sandbox.stub({
+                putObject: () => {
+                },
+                getObject: () => {
+                },
+            });
+
             $scope = _$rootScope_.$new();
 
             StaffCtrl = $controller('StaffCtrl', {
@@ -52,7 +67,7 @@ describe('Staff controller', () => {
                 metaDataService: stubMetaDataService,
                 menuService: stubMenuService,
                 staffService: stubStaffService,
-                $cookies: $cookies,
+                $cookies: stubCookies,
             });
         });
     });
@@ -177,6 +192,89 @@ describe('Staff controller', () => {
             StaffCtrl.filtered = ['foo', 'bar', 'baz'];
 
             expect(StaffCtrl.emptyResults()).to.be.false;
+        });
+    });
+
+    describe('ifCurrentViewIs() method', () => {
+        it('should return true if current view name is the same, that passed to method', () => {
+
+            StaffCtrl.filterProps.currentView = 'table';
+            expect(StaffCtrl.ifCurrentViewIs('table')).to.be.true;
+
+            StaffCtrl.filterProps.currentView = 'blabla';
+            expect(StaffCtrl.ifCurrentViewIs('blabla')).to.be.true;
+
+        });
+
+        it('should return false if current view name is not the same, that passed to method or empty', () => {
+
+            StaffCtrl.filterProps.currentView = '';
+            expect(StaffCtrl.ifCurrentViewIs('table')).to.be.false;
+
+            StaffCtrl.filterProps.currentView = 'table';
+            expect(StaffCtrl.ifCurrentViewIs()).to.be.false;
+
+            StaffCtrl.filterProps.currentView = 'table';
+            expect(StaffCtrl.ifCurrentViewIs('table1')).to.be.false;
+
+        });
+    });
+
+    describe('initProps() method', () => {
+        it('should use $cookies.getObject() method', () => {
+            StaffCtrl.initProps();
+
+            expect(stubCookies.getObject.calledWith('filterProps')).to.be.true;
+        });
+
+        it('should return props, stored in cookies, if they are present', () => {
+
+            let props = {
+                foo: 'bar',
+                bar: 'baz',
+            };
+
+            stubCookies.getObject.returns(props);
+            StaffCtrl.initProps();
+
+            expect(StaffCtrl.initProps()).to.deep.equal(props);
+        });
+
+        it('should return default props, if nothing stored in cookies', () => {
+
+            stubCookies.getObject.returns(undefined);
+            StaffCtrl.initProps();
+
+            expect(StaffCtrl.initProps()).to.deep.equal(defaultProps);
+        });
+    });
+
+    describe('saveProps() method', () => {
+        it('should run $cookies.putObject method with proper args', () => {
+            StaffCtrl.saveProps();
+            expect(stubCookies.putObject.args[0][0]).to.equal('filterProps');
+            expect(stubCookies.putObject.args[0][1]).to.deep.equal(defaultProps);
+        });
+
+        it('should change StaffCtrl.filterProps.orderBy on some conditions', () => {
+
+            // depends on StaffCtrl.ifCurrentViewIs method tested before
+
+            StaffCtrl.filterProps = {
+                currentView: 'departments',
+                orderBy: 'department',
+                orderReverse: ''
+            };
+
+
+            StaffCtrl.saveProps();
+
+            expect(stubCookies.putObject.args[0][0]).to.equal('filterProps');
+            expect(stubCookies.putObject.args[0][1]).to.deep.equal({
+                currentView: 'departments',
+                orderBy: 'name',
+                orderReverse: ''
+            });
         });
     });
 

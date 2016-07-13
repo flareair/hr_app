@@ -51,16 +51,13 @@ export default class StaffCtrl {
     }
 
     ifCurrentViewIs(name) {
+        if (!name) {
+            return false;
+        }
+
         return name === this.filterProps.currentView;
     }
 
-
-    saveProps() {
-        if (this.ifCurrentViewIs('departments') && this.filterProps.orderBy === 'department') {
-            this.filterProps.orderBy = 'name';
-        }
-        return this.$cookies.putObject('filterProps', this.filterProps);
-    }
 
     initProps() {
         let storedProps = this.$cookies.getObject('filterProps');
@@ -77,6 +74,15 @@ export default class StaffCtrl {
 
         return this.filterProps;
     }
+
+
+    saveProps() {
+        if (this.ifCurrentViewIs('departments') && this.filterProps.orderBy === 'department') {
+            this.filterProps.orderBy = 'name';
+        }
+        return this.$cookies.putObject('filterProps', this.filterProps);
+    }
+
 
 }
 
