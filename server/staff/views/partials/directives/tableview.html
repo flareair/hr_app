@@ -1,40 +1,40 @@
-    <section class="table-view">
-        <div class="table-view-head row">
-            <div class="col-md-4">Name</div>
-            <div class="col-md-3">Phone</div>
-            <div class="col-md-3">Email</div>
-            <div class="col-md-2">Department</div>
-        </div>
-        <div
-            class="table-view-element row"
-            ng-repeat="person in filtered = (data | filterBy: ['name', 'email', 'phone', 'department']:filterstr) | orderBy:order:orderdir | sliceFilter:currentPage:limit track by person.id"
+<section class="table-view">
+    <div class="table-view-head row">
+        <div class="col-md-4">Name</div>
+        <div class="col-md-3">Phone</div>
+        <div class="col-md-3">Email</div>
+        <div class="col-md-2">Department</div>
+    </div>
+    <div
+        class="table-view-element row"
+        ng-repeat="person in filtered = (data | filterBy: ['name', 'email', 'phone', 'department']:filterstr) | orderBy:order:orderdir | sliceFilter:currentPage:limit track by person.id"
+    >
+        <div class="col-md-4 col-sm-12"><a href="#">{{person.name}}</a></div>
+        <div class="col-md-3 col-sm-4">{{person.phone}}</div>
+        <div class="col-md-3 col-sm-4"><a href="mailto:{{person.email}}">{{person.email}}</a></div>
+        <div class="col-md-2 col-sm-4">{{person.department}}</div>
+    </div>
+
+
+    <div class="text-center col-md-12">
+        <uib-pagination
+            ng-show="filtered.length > limit"
+            total-items="filtered.length"
+            ng-model="currentPage"
+            max-size="3"
+            items-per-page="limit"
+            boundary-link-numbers="true"
         >
-            <div class="col-md-4 col-sm-12"><a href="#">{{person.name}}</a></div>
-            <div class="col-md-3 col-sm-4">{{person.phone}}</div>
-            <div class="col-md-3 col-sm-4"><a href="mailto:{{person.email}}">{{person.email}}</a></div>
-            <div class="col-md-2 col-sm-4">{{person.department}}</div>
-        </div>
+        </uib-pagination>
+    </div>
 
+    <div class="staff-footer col-md-12">
+        <p class="lead text-center staff-loading" ng-show="loading">
+            Load staff...
+        </p>
 
-        <div class="text-center col-md-12">
-            <uib-pagination
-                ng-show="filtered.length > limit"
-                total-items="filtered.length"
-                ng-model="currentPage"
-                max-size="3"
-                items-per-page="limit"
-                boundary-link-numbers="true"
-            >
-            </uib-pagination>
-        </div>
+        <p class="staff-count" ng-show="filtered.length > 0"><b>Total count:</b> {{filtered.length}}</p>
+        <p class="staff-not-found" ng-show="emptyResults()"><b>Sorry, we can't find anyone</b></p>
+    </div>
 
-        <div class="staff-footer  col-md-12">
-            <p class="lead text-center staff-loading" ng-show="loading">
-                Load staff...
-            </p>
-
-            <p ng-show="filtered.length > 0"><b>Total count:</b> {{filtered.length}}</p>
-            <p ng-show="emptyResults()"><b>Sorry, we can't find anyone</b></p>
-        </div>
-
-    </section>
+</section>
