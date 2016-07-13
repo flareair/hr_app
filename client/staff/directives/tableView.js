@@ -1,6 +1,6 @@
 'use strict';
 
-export default function departmentView() {
+export default function tableView(staffService) {
     return {
         restrict:'E',
         templateUrl:'staff/partials/directives/tableview.html',
@@ -13,7 +13,7 @@ export default function departmentView() {
         },
         link:function(scope, elem, attrs){
             scope.emptyResults = function emptyResults() {
-                return !scope.loading && scope.filtered.length <= 0;
+                return staffService.emptyResults(scope.loading, scope.filtered);
             };
 
             scope.currentPage = 1;
@@ -21,3 +21,5 @@ export default function departmentView() {
         }
     };
 }
+
+tableView.inject = ['staffService'];

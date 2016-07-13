@@ -1,6 +1,6 @@
 'use strict';
 
-export default function departmentView() {
+export default function departmentView(staffService) {
     return {
         restrict:'E',
         templateUrl:'staff/partials/directives/departmentview.html',
@@ -13,8 +13,10 @@ export default function departmentView() {
         },
         link:function(scope, elem, attrs){
             scope.emptyResults = function emptyResults() {
-                return !scope.loading && scope.filtered.length <= 0;
+                return staffService.emptyResults(scope.loading, scope.filtered);
             };
         }
     };
 }
+
+departmentView.inject = ['staffService'];

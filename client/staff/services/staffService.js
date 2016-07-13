@@ -31,6 +31,15 @@ export default class boardService {
                 return res;
             });
     }
+
+
+    emptyResults(loading, filtered) {
+        if (!filtered) {
+            return true;
+        }
+
+        return !loading && filtered.length <= 0;
+    }
 }
 
 boardService.$inject = ['$http', '$q'];

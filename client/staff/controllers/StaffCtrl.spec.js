@@ -164,37 +164,6 @@ describe('Staff controller', () => {
         });
     });
 
-    describe('emptyResults() method', () => {
-        it('should return true if promise is already loaded and filtered results is empty', () => {
-            StaffCtrl.loading = false;
-            StaffCtrl.filtered = [];
-
-            expect(StaffCtrl.emptyResults()).to.be.true;
-
-            StaffCtrl.loading = false;
-            StaffCtrl.filtered = undefined;
-
-            expect(StaffCtrl.emptyResults()).to.be.true;
-        });
-
-        it('should return false if promise is loadeding or filtered results not empty', () => {
-            StaffCtrl.loading = true;
-            StaffCtrl.filtered = [];
-
-            expect(StaffCtrl.emptyResults()).to.be.false;
-
-            StaffCtrl.loading = false;
-            StaffCtrl.filtered = ['foo', 'bar', 'baz'];
-
-            expect(StaffCtrl.emptyResults()).to.be.false;
-
-            StaffCtrl.loading = true;
-            StaffCtrl.filtered = ['foo', 'bar', 'baz'];
-
-            expect(StaffCtrl.emptyResults()).to.be.false;
-        });
-    });
-
     describe('ifCurrentViewIs() method', () => {
         it('should return true if current view name is the same, that passed to method', () => {
 

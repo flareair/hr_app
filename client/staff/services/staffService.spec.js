@@ -91,6 +91,22 @@ describe('Board service', () => {
         });
     });
 
+    describe('emptyResults() method', () => {
+        it('should return true if promise is already loaded and filtered results is empty', () => {
 
+            expect(staffService.emptyResults(false, [])).to.be.true;
+
+            expect(staffService.emptyResults(false, undefined)).to.be.true;
+        });
+
+        it('should return false if promise is loadeding or filtered results not empty', () => {
+
+            expect(staffService.emptyResults(true, [])).to.be.false;
+
+            expect(staffService.emptyResults(false, ['foo', 'bar', 'baz'])).to.be.false;
+
+            expect(staffService.emptyResults(true, ['foo', 'bar', 'baz'])).to.be.false;
+        });
+    });
 
 });
