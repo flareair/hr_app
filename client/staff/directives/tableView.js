@@ -22,4 +22,4 @@ export default function tableView(staffService) {
     };
 }
 
-tableView.inject = ['staffService'];
+tableView.$inject = ['staffService'];
