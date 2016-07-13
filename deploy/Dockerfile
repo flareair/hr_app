@@ -6,13 +6,10 @@ RUN apt-get update && \
 
 WORKDIR /app
 
-RUN git clone https://github.com/flareair/board_of_shame.git ./ && git checkout tags/0.7.0
-
-COPY credentials.json /app/credentials.json
+RUN git clone https://github.com/flareair/hr_app.git ./
 
 ENV PORT 80
 ENV NODE_ENV production
-ENV GOOGLE_APPLICATION_CREDENTIALS /app/credentials.json
 
 RUN npm i
 
