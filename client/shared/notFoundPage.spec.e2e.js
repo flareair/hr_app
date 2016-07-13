@@ -17,6 +17,6 @@ describe('404 page', () => {
     });
 
     it('should have right h1 caption', () => {
-        expect(element(by.tagName('h1')).getText()).to.eventually.equal('Упс. страница не найдена');
+        expect(element(by.tagName('h1')).getText()).to.eventually.equal('Nooooo!');
     });
 });

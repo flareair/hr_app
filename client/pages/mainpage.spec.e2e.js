@@ -17,7 +17,7 @@ describe('About page', () => {
     });
 
     it('should have right h1 caption', () => {
-        expect(element(by.tagName('h1')).getText()).to.eventually.equal('HR app');
+        expect(element(by.tagName('h1')).getText()).to.eventually.equal('Welcome to HR app!');
     });
 
     it('should have right active menu item', () => {
