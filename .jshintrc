@@ -3,5 +3,6 @@
     "globalstrict": true,
     "esnext": true,
     "node": true,
-    "mocha": true
+    "mocha": true,
+    "predef": ["angular", "sinon", "expect", "browser", "element", "by"],
 }

@@ -27,7 +27,7 @@ export default class StaffCtrl {
     activate() {
 
         this.loading = true;
-        return this.staffService.getAllScammers()
+        return this.staffService.getAllStaff()
             .then((res) => {
                 this.staffList = res.data;
                 return this.staffList;

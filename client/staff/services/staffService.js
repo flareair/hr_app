@@ -9,7 +9,7 @@ export default class boardService {
         this.staff = [];
     }
 
-    getAllScammers() {
+    getAllStaff() {
 
         // very simple inmemory caching
 
