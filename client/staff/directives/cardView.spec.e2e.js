@@ -6,23 +6,25 @@ import chaiAsPromised from 'chai-as-promised';
 chai.use(chaiAsPromised);
 let expect = chai.expect;
 
-describe('Staff table view', () => {
+
+/* really equal table view, need to improve*/
+
+describe('Staff card view', () => {
 
     let searchField;
 
     beforeEach(() => {
         browser.get('/staff');
-        element(by.cssContainingText('option', 'table')).click();
+        element(by.cssContainingText('option', 'cards')).click();
     });
 
     afterEach(() => {
-        // clear all cookies
         browser.manage().deleteAllCookies();
     });
 
     describe('without filters', () => {
-        it('should show list of 20 persons in table view', () => {
-            expect(element.all(by.css('.table-view-element')).count()).to.eventually.equal(20);
+        it('should show list of 12 persons in table view', () => {
+            expect(element.all(by.css('.card-item')).count()).to.eventually.equal(12);
         });
 
         it('should show total count 200', () => {
@@ -43,11 +45,11 @@ describe('Staff table view', () => {
         });
 
         it('should show list of 5 persons', () => {
-            expect(element.all(by.css('.table-view-element')).count()).to.eventually.equal(5);
+            expect(element.all(by.css('.card-item')).count()).to.eventually.equal(5);
         });
 
         it('should show proper first person', () => {
-            expect(element.all(by.css('.table-view-element')).get(0).getText()).to.eventually.contain('Abe Heaney');
+            expect(element.all(by.css('.card-item')).get(0).getText()).to.eventually.contain('Abe Heaney');
         });
 
         it('should show total count 5', () => {
@@ -66,12 +68,12 @@ describe('Staff table view', () => {
             element(by.cssContainingText('option', 'email')).click();
         });
 
-        it('should show list of first 20 persons sorted by email', () => {
-            expect(element.all(by.css('.table-view-element')).count()).to.eventually.equal(20);
+        it('should show list of first 12 persons sorted by email', () => {
+            expect(element.all(by.css('.card-item')).count()).to.eventually.equal(12);
         });
 
         it('should show proper first person', () => {
-            expect(element.all(by.css('.table-view-element')).get(0).getText()).to.eventually.contain('Ada.Hintz37@gmail.com');
+            expect(element.all(by.css('.card-item')).get(0).getText()).to.eventually.contain('Ada.Hintz37@gmail.com');
         });
 
         it('should show total count 200', () => {
@@ -94,12 +96,12 @@ describe('Staff table view', () => {
             element(by.cssContainingText('option', 'desc')).click();
         });
 
-        it('should show list of first 20 persons sorted by department descreased', () => {
-            expect(element.all(by.css('.table-view-element')).count()).to.eventually.equal(20);
+        it('should show list of first 12 persons sorted by department descreased', () => {
+            expect(element.all(by.css('.card-item')).count()).to.eventually.equal(12);
         });
 
         it('should show proper first person', () => {
-            expect(element.all(by.css('.table-view-element')).get(0).getText()).to.eventually.contain('Santina Windler');
+            expect(element.all(by.css('.card-item')).get(0).getText()).to.eventually.contain('Santina Windler');
         });
 
         it('should show total count 200', () => {
@@ -121,7 +123,7 @@ describe('Staff table view', () => {
         });
 
         it('should not show any person', () => {
-            expect(element.all(by.css('.table-view-element')).count()).to.eventually.equal(0);
+            expect(element.all(by.css('.card-item')).count()).to.eventually.equal(0);
         });
 
         it('should not show total count 200', () => {

@@ -6,7 +6,7 @@ import chaiAsPromised from 'chai-as-promised';
 chai.use(chaiAsPromised);
 let expect = chai.expect;
 
-describe('Board page (desktop)', () => {
+describe('Staff page', () => {
 
     beforeEach(() => {
         browser.get('/staff');
