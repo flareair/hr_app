@@ -13,6 +13,13 @@ Or using docker-compose (change port in Dockerfile):
 
 ## Testing
 
+Require global karma.js and protractor installation
+
+Run `NODE_ENV=test npm start`
+
+When `karma start --single-run` for unit tests
+`protractor` for e2e tests
+
 ## Author
 
 [Yaroslav Aksenov](https://github.com/flareair)
