@@ -7,7 +7,7 @@
                 <label for="">Filter</label>
                 <input
                     type="text"
-                    class="form-control"
+                    class="form-control filter-word"
                     placeholder="Filter here"
                     ng-model="staff.filter">
             </div>
@@ -17,7 +17,7 @@
                 <div class="col-md-6 col-sm-6 col-xs-6">
                     <div class="form-group">
                         <label for="">Sort by</label>
-                        <select class="form-control" ng-model="staff.filterProps.orderBy" ng-change="staff.saveProps()">
+                        <select class="form-control filter-sort" ng-model="staff.filterProps.orderBy" ng-change="staff.saveProps()">
                           <option value="name">name</option>
                           <option value="email">email</option>
                           <option value="department" ng-disabled="staff.ifCurrentViewIs('departments')">department</option>
@@ -27,7 +27,7 @@
                 <div class="col-md-6 col-sm-6 col-xs-6">
                     <div class="form-group">
                         <label for="">Order</label>
-                        <select class="form-control" ng-model="staff.filterProps.orderReverse" ng-change="staff.saveProps()">
+                        <select class="form-control filter-order" ng-model="staff.filterProps.orderReverse" ng-change="staff.saveProps()">
                           <option value="">asc</option>
                           <option value="true">desc</option>
                         </select>
