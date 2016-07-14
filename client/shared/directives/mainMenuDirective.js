@@ -1,5 +1,10 @@
 'use strict';
 
+/*
+ Main menu directive
+*/
+
+
 export default function mainMenu() {
     return {
         restrict: 'E',
