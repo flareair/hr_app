@@ -2,6 +2,10 @@
 
 boardRouter.$inject = ['$routeProvider'];
 
+/*
+    Staff router
+*/
+
 export default function boardRouter($routeProvider) {
     $routeProvider
         .when('/staff', {

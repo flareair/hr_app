@@ -7,6 +7,7 @@ import ngRouter from 'angular-route';
 
 import staffRouter from './staffRouter';
 
+// angular-ui pagination
 import pagination from 'angular-ui-bootstrap/src/pagination';
 
 import departmentView from './directives/departmentView';

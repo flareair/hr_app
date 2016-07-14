@@ -7,6 +7,11 @@ chai.use(chaiAsPromised);
 let expect = chai.expect;
 
 
+/*
+    Card view directive e2e tests
+*/
+
+
 /* really equal table view, need to improve*/
 
 describe('Staff card view', () => {

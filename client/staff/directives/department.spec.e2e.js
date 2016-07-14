@@ -7,7 +7,9 @@ chai.use(chaiAsPromised);
 let expect = chai.expect;
 
 
-/* test both departmentView and departmentStaffView directives*/
+/*
+    test both departmentView and departmentStaffView directives
+*/
 
 describe('Staff departments view', () => {
 
