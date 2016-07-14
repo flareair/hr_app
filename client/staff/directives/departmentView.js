@@ -1,5 +1,10 @@
 'use strict';
 
+/*
+    This directive contain multiple departments
+*/
+
+
 export default function departmentView(staffService) {
     return {
         restrict:'E',
@@ -11,7 +16,9 @@ export default function departmentView(staffService) {
             order: '=',
             orderdir: '=',
         },
-        link:function(scope, elem, attrs){
+        link:function(scope, elem, attrs) {
+
+            // if results is empty
             scope.emptyResults = function emptyResults() {
                 return staffService.emptyResults(scope.loading, scope.filtered);
             };

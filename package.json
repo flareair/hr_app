@@ -1,14 +1,11 @@
 {
   "name": "hr_app",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "HR app",
   "main": "app.js",
   "scripts": {
     "start": "webpack && node ./server/generateJson.js && ./node_modules/.bin/forever ./bin/www",
-    "server": "./node_modules/.bin/forever ./bin/www",
-    "server-detached": "./node_modules/.bin/forever start ./bin/www",
-    "test": "./node_modules/karma/bin/karma start --single-run && ./node_modules/protractor/bin/protractor && ./node_modules/mocha/bin/mocha \"server/**/*.spec.js\"",
-    "test-server": "./node_modules/mocha/bin/mocha \"server/**/*.spec.js\""
+    "test": "karma start --single-run && protractor"
   },
   "author": "flare",
   "license": "MIT",

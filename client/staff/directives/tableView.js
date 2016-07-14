@@ -1,5 +1,11 @@
 'use strict';
 
+
+/*
+    Table view directive
+
+*/
+
 export default function tableView(staffService) {
     return {
         restrict:'E',
@@ -16,7 +22,9 @@ export default function tableView(staffService) {
                 return staffService.emptyResults(scope.loading, scope.filtered);
             };
 
+            // start page
             scope.currentPage = 1;
+            // staff per page limit
             scope.limit = 20;
         }
     };

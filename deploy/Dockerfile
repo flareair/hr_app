@@ -7,7 +7,7 @@ RUN apt-get update && \
 WORKDIR /app
 
 
-RUN git clone https://github.com/flareair/hr_app.git ./ && git checkout tags/0.2.0
+RUN git clone https://github.com/flareair/hr_app.git ./ && git checkout tags/0.3.0
 
 
 ENV PORT 80

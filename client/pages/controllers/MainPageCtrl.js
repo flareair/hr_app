@@ -1,5 +1,10 @@
 'use strict';
 
+/*
+    Controller of main page at site root
+*/
+
+
 export default class MainPageCtrl {
     constructor(metaDataService, menuService) {
         this.title = 'HR app';

@@ -16,6 +16,12 @@ import NotFoundPageCtrl from './controllers/NotFoundPageCtrl';
 import mainMenu from './directives/mainMenuDirective';
 import viewLoading from './directives/viewLoadingDirective';
 
+
+/*
+    Module of shared content
+*/
+
+
 export default angular.module('app.shared', [ngRouter])
     .config(sharedRouter)
     .service('metaDataService', metaDataService)

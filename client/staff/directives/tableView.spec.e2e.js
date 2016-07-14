@@ -6,6 +6,12 @@ import chaiAsPromised from 'chai-as-promised';
 chai.use(chaiAsPromised);
 let expect = chai.expect;
 
+/*
+    staff view e2e, need to improve
+
+*/
+
+
 describe('Staff table view', () => {
 
     let searchField;

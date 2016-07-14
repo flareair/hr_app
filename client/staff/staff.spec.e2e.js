@@ -6,6 +6,11 @@ import chaiAsPromised from 'chai-as-promised';
 chai.use(chaiAsPromised);
 let expect = chai.expect;
 
+
+/*
+    e2e static content of staff page
+*/
+
 describe('Staff page', () => {
 
     beforeEach(() => {

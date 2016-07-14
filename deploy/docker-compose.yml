@@ -1,4 +1,4 @@
-web:
+hr_image:
   build: .
   expose:
     - "80"

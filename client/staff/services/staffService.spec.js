@@ -1,6 +1,12 @@
 'use strict';
 import app from '../../app';
 
+
+/*
+    e2e for staffService
+*/
+
+
 describe('Board service', () => {
     let sandbox;
     let $httpBackend;

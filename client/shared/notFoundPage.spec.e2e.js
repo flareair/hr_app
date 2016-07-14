@@ -6,6 +6,11 @@ import chaiAsPromised from 'chai-as-promised';
 chai.use(chaiAsPromised);
 let expect = chai.expect;
 
+
+/*
+    e2e tests of 404 page
+*/
+
 describe('404 page', () => {
 
     beforeEach(() => {

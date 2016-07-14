@@ -2,6 +2,11 @@
 
 routing.$inject = ['$routeProvider', '$locationProvider'];
 
+
+/*
+    Router of shared content
+*/
+
 export default function routing($routeProvider, $locationProvider) {
     $routeProvider
         .when('/404', {

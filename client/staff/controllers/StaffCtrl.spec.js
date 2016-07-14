@@ -1,6 +1,11 @@
 'use strict';
 import app from '../../app';
 
+/*
+    Staff controller unit tests
+*/
+
+
 describe('Staff controller', () => {
     // let StaffCtrl;
     let stubStaffService;

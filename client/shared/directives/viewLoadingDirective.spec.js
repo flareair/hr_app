@@ -1,6 +1,11 @@
 'use strict';
 import app from '../../app';
 
+/*
+    e2e for loadingDirective
+*/
+
+
 describe('viewLoading directive', () => {
     let viewLoading, scope, compile, sandbox, stubLoadingService;
 

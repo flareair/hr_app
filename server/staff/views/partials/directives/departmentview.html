@@ -1,9 +1,11 @@
 <section class="departments-view">
+
+    <!-- repeat staff, filter and group it -->
     <div
         class="department-staff"
         ng-repeat="(department, people) in filtered = (data | filterBy: ['name', 'email', 'phone', 'department']:filterstr) | groupBy:'department'"
     >
-
+        <!-- separate department directive -->
         <department-staff-view
             caption="department"
             data="people"
@@ -12,6 +14,8 @@
         ></department-staff-view>
 
     </div>
+
+    <!-- footer messages -->
     <div class="staff-footer">
         <p class="lead text-center staff-loading" ng-show="loading">
             Load staff...
