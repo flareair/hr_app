@@ -1,8 +1,12 @@
 <h3 class="department-staff-caption">
+
+    <!-- click on caption toggles department-staff-accordeon -->
     <a href="#" ng-click="toggleAccordeon()">{{caption}} <small><span class="glyphicon" ng-class="showStaff ? 'glyphicon-triangle-top' : 'glyphicon-triangle-bottom'" aria-hidden="true"></span></small></a>
 </h3>
 
 <div class="department-staff-accordeon row" ng-show="showStaff">
+
+    <!-- repeat staff in department -->
     <div
         class="col-md-4 col-sm-6"
         ng-repeat="person in data | orderBy:order:orderdir | sliceFilter:currentPage:limit track by person.id"
@@ -17,6 +21,8 @@
 
     </div>
 
+
+    <!-- pagination for department -->
     <div class="col-md-12 text-center">
         <uib-pagination
             ng-show="data.length > limit"

@@ -1,10 +1,15 @@
 <section class="table-view">
+
+    <!-- tablecaption -->
     <div class="table-view-head row">
         <div class="col-md-4">Name</div>
         <div class="col-md-3">Phone</div>
         <div class="col-md-3">Email</div>
         <div class="col-md-2">Department</div>
     </div>
+
+
+    <!-- repeat persons in staff list, filter, order, slice -->
     <div
         class="table-view-element row"
         ng-repeat="person in filtered = (data | filterBy: ['name', 'email', 'phone', 'department']:filterstr) | orderBy:order:orderdir | sliceFilter:currentPage:limit track by person.id"
@@ -15,7 +20,7 @@
         <div class="col-md-2 col-sm-4">{{person.department}}</div>
     </div>
 
-
+    <!-- pagination -->
     <div class="text-center col-md-12">
         <uib-pagination
             ng-show="filtered.length > limit"
@@ -28,6 +33,7 @@
         </uib-pagination>
     </div>
 
+    <!-- footer messages -->
     <div class="staff-footer col-md-12">
         <p class="lead text-center staff-loading" ng-show="loading">
             Load staff...
