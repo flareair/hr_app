@@ -6,6 +6,12 @@ import chaiAsPromised from 'chai-as-promised';
 chai.use(chaiAsPromised);
 let expect = chai.expect;
 
+
+/*
+    e2e tests of main page controller
+*/
+
+
 describe('Main page', () => {
 
     beforeEach(() => {

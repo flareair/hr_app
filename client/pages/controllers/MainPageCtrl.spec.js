@@ -1,6 +1,11 @@
 'use strict';
 import app from '../../app';
 
+/*
+    Tests of main page controller
+*/
+
+
 describe('MainPage controller', () => {
     let MainPageCtrl;
 
